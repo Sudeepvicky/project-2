@@ -142,7 +142,7 @@ export default function RightSection({
                 key={exp.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-white dark:bg-black border border-gray-200 dark:border-gray-700 rounded-lg shadow-md p-6"
+                className="bg-white dark:bg-black border border-gray-200 dark:border-gray-700 rounded-lg p-6"
               >
                 <div className="flex justify-between items-start mb-4">
                   <div>
@@ -216,7 +216,7 @@ export default function RightSection({
             {blogPosts.map(post => (
               <motion.div
                 key={post.id}
-                className="bg-white dark:bg-black border border-gray-200 dark:border-gray-700 rounded-lg shadow-md overflow-hidden cursor-pointer relative hover:border-black dark:hover:border-white"
+                className="bg-white dark:bg-black border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden cursor-pointer relative hover:border-black dark:hover:border-white"
                 onClick={() => {
                   setSelectedBlogId(post.id);  // Set the selected blog ID
                   setSelectedProjectId(null);  // Reset project selection
