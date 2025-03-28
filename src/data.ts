@@ -177,68 +177,6 @@ export const experiences: Experience[] = [
   }
 ];
 
-// export const tilEntries: TILEntry[] = [
-//   {
-//     id: '1',
-//     date: '2024-03-25',
-//     title: 'LangChain Database Integration',
-//     description: 'Learned how to integrate LangChain with databases for AI chatbot development, focusing on efficient data retrieval and context management.'
-//   },
-//   {
-//     id: '2',
-//     date: '2024-03-20',
-//     title: 'Pandas Data Manipulation',
-//     description: 'Explored pandas library for data manipulation, focusing on handling missing values and data preprocessing techniques.'
-//   },
-//   {
-//     id: '3',
-//     date: '2024-03-15',
-//     title: 'Deep Learning with TensorFlow',
-//     description: 'Studied neural networks and built a deep learning model using TensorFlow for image classification tasks.'
-//   },
-//   {
-//     id: '4',
-//     date: '2024-03-10',
-//     title: 'Building RESTful APIs with Node.js',
-//     description: 'Created RESTful APIs using Node.js, exploring HTTP methods and server-client communication.'
-//   },
-//   {
-//     id: '5',
-//     date: '2024-03-05',
-//     title: 'React.js Advanced Patterns',
-//     description: 'Delved into advanced React.js patterns like higher-order components and render props for component reusability.'
-//   },
-//   {
-//     id: '6',
-//     date: '2024-03-01',
-//     title: 'Machine Learning with Scikit-Learn',
-//     description: 'Explored machine learning algorithms and models using the Scikit-Learn library for predictive analysis.'
-//   },
-//   {
-//     id: '7',
-//     date: '2024-02-25',
-//     title: 'Introduction to Cloud Computing with AWS',
-//     description: 'Learned the basics of cloud computing and deployed a web app using AWS services like EC2 and S3.'
-//   },
-//   {
-//     id: '8',
-//     date: '2024-02-20',
-//     title: 'Introduction to SQL Queries',
-//     description: 'Mastered SQL query writing, focusing on data retrieval, joins, and aggregation for effective database management.'
-//   },
-//   {
-//     id: '9',
-//     date: '2024-02-15',
-//     title: 'Docker and Containerization',
-//     description: 'Learned about Docker, creating containers for apps, and container orchestration with Kubernetes.'
-//   },
-//   {
-//     id: '10',
-//     date: '2024-02-10',
-//     title: 'CI/CD Pipeline Setup with GitHub Actions',
-//     description: 'Set up continuous integration and continuous deployment pipelines using GitHub Actions for automated testing and deployment.'
-//   }
-// ];
 
 const tilModules = import.meta.glob('./content/til/*.md', { 
   query: '?raw',
@@ -280,6 +218,8 @@ function tilParseFrontMatter(content: string): { frontMatter: Record<string, any
 export const tilEntries: TILEntry[] = Object.entries(tilModules).map(([path, content]) => {
   const id = path.split('/').pop()?.replace('.md', '') || '0';
   const { frontMatter, markdown } = tilParseFrontMatter(content as string);
+
+  console.log(frontMatter.description)  
 
   return {
     id,

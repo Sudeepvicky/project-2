@@ -201,7 +201,7 @@ export default function RightSection({
                     </p>
                     <h3 className="font-semibold mt-1 dark:text-white">{entry.title}</h3>
                     <div className="mt-2 text-gray-600 dark:text-gray-300 ">
-                      {entry.title}
+                      {entry.description}
                     </div>
                   </div>
                 </motion.div>
