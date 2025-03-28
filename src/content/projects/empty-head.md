@@ -27,3 +27,7 @@ Led a team of 25 members in developing a comprehensive web application for stude
 - Database: MongoDB
 - Authentication: JWT
 - Deployment: AWS
+
+```
+let a = 10
+```

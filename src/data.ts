@@ -44,7 +44,9 @@ function projectParseFrontMatter(content: string): { frontMatter: Record<string,
 export const projects: Project[] = Object.entries(projectModules).map(([path, content]) => {
   const id = path.split('/').pop()?.replace('.md', '') || '0';
   const { frontMatter, markdown } = projectParseFrontMatter(content as string);
- 
+
+  markdown.replace(/\\n/g, "\n");
+
   return {
     id,
     title: frontMatter.title,

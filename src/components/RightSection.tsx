@@ -2,6 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Building2, Home, ArrowLeft } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import rehypeRaw from "rehype-raw";
+import remarkGfm from "remark-gfm";
+
 import { format } from 'date-fns';
 import { Tab } from '../types';
 import { projects, experiences, tilEntries, blogPosts } from '../data';
