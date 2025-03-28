@@ -30,7 +30,7 @@ export default function LeftSection({ selectedProjectId, selectedBlogId }: LeftS
             alt={project.title}
             className="w-full h-48 object-cover rounded-lg"
           />
-          <h1 className="font-bold dark:text-white">{project.title}</h1>
+          <h2 className="font-bold dark:text-white">{project.title}</h2>
 
           <div>
             <h2 className="font-semibold mb-2 dark:text-white">Tech Stack</h2>

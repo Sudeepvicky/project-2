@@ -21,10 +21,10 @@ export default function Layout() {
           >
 
             {/* Dark mode toggle button */}
-            <div className="absolute top-8 right-8">
+            <div className="absolute top-8 right-8 z-10">
               <button
                 onClick={() => setIsDarkMode(!isDarkMode)}
-                className="p-2 rounded-full bg-gray-200 dark:bg-white-200"
+                className="p-2 rounded-full bg-gray-200 dark:bg-white-200 z-10" 
               >
                 {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </button>

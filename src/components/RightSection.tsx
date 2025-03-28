@@ -59,39 +59,52 @@ export default function RightSection({
     if (selectedProjectId) {
       const project = projects.find(p => p.id === selectedProjectId);
       return (
-        <div className="p-6 overflow-y-auto">
-          <button 
-            onClick={() => setSelectedProjectId(null)}
-            className="flex items-center text-gray-600 dark:text-gray-300 hover:text-black hover:bg-gray-300 rounded-full dark:hover:text-black dark:hover:bg-white p-2 mb-6"
-          >
-            <ArrowLeft className="w-[11%] h-[11%] mr-2" />
-            Back to Projects
-          </button>
-          <ReactMarkdown className="prose dark:prose-invert max-w-none dark:text-gray-300">
-            {project?.fullDescription}
-          </ReactMarkdown>
+        <div className="relative h-full">
+          {/* Sticky "Back to Projects" Button */}
+          <div className="sticky top-0 left-0 w-full bg-white dark:bg-black p-4">
+            <button 
+              onClick={() => setSelectedProjectId(null)}
+              className="flex items-center text-gray-600 dark:text-gray-300 hover:text-black hover:bg-gray-300 rounded-full dark:hover:text-black dark:hover:bg-white p-2"
+            >
+              <ArrowLeft className="w-[11%] h-[11%] mr-2" />
+              Back to Projects
+            </button>
+          </div>
+
+          {/* Content Section */}
+          <div className="mt-6 overflow-y-auto pl-6">
+            <ReactMarkdown className="prose dark:prose-invert max-w-none dark:text-gray-300">
+              {project?.fullDescription}
+            </ReactMarkdown>
+          </div>
         </div>
+
       );
     }
 
     if (selectedBlogId) {
       const blog = blogPosts.find(b => b.id === selectedBlogId);
       return (
-        <div className="p-6 overflow-y-auto max-w-3xl mx-auto">
-          <div className="flex justify-between items-center mb-6">
-            <button 
-              onClick={() => setSelectedBlogId(null)}
-              className="flex items-center text-gray-600 dark:text-gray-300 hover:text-black hover:bg-gray-300 rounded-full dark:hover:text-black dark:hover:bg-white p-2 mb-6"
-            >
-              <ArrowLeft className="w-[11%] h-[11%] mr-2" />
-              Back to Blogs
-            </button> 
-            
-          </div>
-          <div className="prose dark:prose-invert max-w-none dark:text-gray-300">
-            <ReactMarkdown>{blog?.content}</ReactMarkdown>
-          </div>
-        </div>
+<div className="relative min-h-screen">
+  {/* Sticky "Back to Blogs" Button */}
+  <div className="sticky top-0 left-0 w-full bg-white dark:bg-black p-4">
+    <button 
+      onClick={() => setSelectedBlogId(null)}
+      className="flex items-center text-gray-600 dark:text-gray-300 hover:text-black hover:bg-gray-300 rounded-full dark:hover:text-black dark:hover:bg-white p-2"
+    >
+      <ArrowLeft className="w-[11%] h-[11%] mr-2" />
+      Back to Blogs
+    </button>
+  </div>
+
+  {/* Blog Content */}
+  <div className="mt-6 pl-6">
+    <ReactMarkdown className="prose dark:prose-invert max-w-none dark:text-gray-300">
+      {blog?.content}
+    </ReactMarkdown>
+  </div>
+</div>
+
       );
     }
 
@@ -201,13 +214,13 @@ export default function RightSection({
                     <div className="absolute left-0 top-0 h-full w-px bg-gray-300 dark:bg-gray-700" />
                     
                     {/* Small Circle (Ping Effect on Hover) */}
-                    <div className="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-gray-500 dark:bg-white group-hover:animate-ping group-hover:bg-orange-500 group-hover:w-3 group-hover:h-3 group-hover:left-[-6px]" />
+                    <div className="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-gray-500 dark:bg-white group-hover:animate-ping dark:group-hover:bg-green-300 darkgroup-hover:bg-orange-300 group-hover:w-3 group-hover:h-3 group-hover:left-[-6px]" />
 
                     {/* Hoverable Content (Separate from Above Elements) */}
                     <div className="relative group pl-6 cursor-pointer "> 
                       <p>
                         <p className='inline-block hidden group-hover:inline-block'>📆 &nbsp;</p> 
-                        <span className="bg-gray-300 dark:bg-white-600 px-2 rounded text-black dark:text-black group-hover:bg-orange-300">
+                        <span className="bg-gray-300 dark:bg-white-600 px-2 rounded text-black dark:text-black dark:group-hover:bg-green-300 group-hover:bg-orange-300" >
                           {format(new Date(entry.date), 'MMM dd, yyyy')}
                         </span>
                       </p>

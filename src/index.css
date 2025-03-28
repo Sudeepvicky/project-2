@@ -4,25 +4,25 @@
 
 
 /* Default font size (for large screens) */
-body {
+body, .prose {
   font-size: 14px;
 }
 
 /* Medium screens (tablets) */
 @media screen and (max-width: 1024px) {
-  body {
+  body, .prose {
     font-size: 12px;
   }
 
-  h1 {
+  h1, .prose {
     font-size: 1.75em;
   }
 
-  h2 {
+  h2, .prose {
     font-size: 1.5em;
   }
 
-  h3 {
+  h3, .prose {
     font-size: 1.3em;
   }
 
@@ -30,23 +30,24 @@ body {
     width: 90%;
     height: 90%;
   }
+
 }
 
 /* Small screens (mobile) */
 @media screen and (max-width: 768px) {
-  body {
+  body , .prose{
     font-size: 10px;
   }
 
-  h1 {
+  h1, .prose {
     font-size: 1.5em;
   }
 
-  h2 {
+  h2, .prose{
     font-size: 1.25em;
   }
 
-  h3 {
+  h3, .prose {
     font-size: 1.5em;
   }
 
@@ -58,19 +59,19 @@ body {
 
 /* Extra small screens (very small mobile devices) */
 @media screen and (max-width: 480px) {
-  body {
+  body, .prose {
     font-size: 8px;
   }
 
-  h1 {
+  h1, .prose {
     font-size: 1.25em;
   }
 
-  h2 {
+  h2, .prose {
     font-size: 1em;
   }
 
-  h3 {
+  h3, .prose {
     font-size: 1.3em;
   }
 
