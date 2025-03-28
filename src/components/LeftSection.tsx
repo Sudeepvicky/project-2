@@ -153,7 +153,7 @@ export default function LeftSection({ selectedProjectId, selectedBlogId }: LeftS
               <a
                 href="https://github.com/Sudeepvicky"
                 target="_blank"
-                className="text-black dark:text-gray-300 dark:hover:text-black"
+                className="text-black dark:text-gray-300 dark:hover:text-white"
               >
                 <Github />
               </a>

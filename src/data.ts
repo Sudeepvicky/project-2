@@ -5,13 +5,13 @@ import matter from 'gray-matter';
 import { fr } from 'date-fns/locale';
 
 
-const productModules = import.meta.glob('./content/projects/*.md', { 
+const projectModules = import.meta.glob('./content/projects/*.md', { 
   query: '?raw',
   import: 'default',
   eager: true 
 });
 
-function productParseFrontMatter(content: string): { frontMatter: Record<string, any>, markdown: string } {
+function projectParseFrontMatter(content: string): { frontMatter: Record<string, any>, markdown: string } {
   const frontMatterMatch = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)/);
   if (!frontMatterMatch) return { frontMatter: {}, markdown: content };
 
@@ -41,9 +41,9 @@ function productParseFrontMatter(content: string): { frontMatter: Record<string,
   return { frontMatter: frontMatterObj, markdown };
 }
 
-export const projects: Project[] = Object.entries(productModules).map(([path, content]) => {
+export const projects: Project[] = Object.entries(projectModules).map(([path, content]) => {
   const id = path.split('/').pop()?.replace('.md', '') || '0';
-  const { frontMatter, markdown } = productParseFrontMatter(content as string);
+  const { frontMatter, markdown } = projectParseFrontMatter(content as string);
  
   return {
     id,
