@@ -118,6 +118,7 @@ export default function LeftSection({ selectedProjectId, selectedBlogId }: LeftS
             animate={{ opacity: 1 }}
             className="space-y-4"
           >
+            <a className='dark:text-white underline' href='https://websiteorg-git-main-battu-sudeeps-projects.vercel.app/' target='_blank'>Sudeep.dev</a> 
             <img
               src={profileImage}
               alt="Profile"
@@ -126,16 +127,14 @@ export default function LeftSection({ selectedProjectId, selectedBlogId }: LeftS
 
             <h1 className="text-2xl font-bold text-center dark:text-white">Battu Sudeep</h1>
             <p className="text-gray-600 dark:text-gray-300 text-center">
-              Full Stack Developer & AI Enthusiast
+            💻 Full Stack Developer & 🤖 AI Enthusiast
             </p>
           </motion.div>
 
           <div className="space-y-4">
             <h2 className="text-xl font-semibold dark:text-white">About Me</h2>
             <p className="text-gray-600 dark:text-gray-300">
-              Passionate developer with expertise in building scalable web applications
-              and integrating AI solutions. Always learning and sharing knowledge
-              with the community.
+            🚀 Passionate developer building scalable web apps & integrating AI solutions. Always learning & sharing knowledge with the community.
             </p>
           </div>
 
@@ -149,7 +148,7 @@ export default function LeftSection({ selectedProjectId, selectedBlogId }: LeftS
                 data-cal-namespace="15min"
                 data-cal-config='{"layout":"month_view"}'
                 className='text-white dark:text-black bg-black dark:bg-white px-3 pc-1 rounded'>
-                Schedule Call
+                Schedule Call 
               </button>
               <a
                 href="../assets/Battu Sudeep_1.pdf"

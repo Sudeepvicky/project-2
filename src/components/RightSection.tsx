@@ -134,6 +134,7 @@ export default function RightSection({
                 
                 {/* Date and Icon placed at the bottom-right */}
                 <div className="bg-gray-300 dark:bg-white-600 px-2 rounded text-black dark:text-black absolute bottom-4 right-4">
+                  
                   <span className="flex items-center justify-center">
                     {/* <Calendar className="w-[7%] h-[7%] mr-1" /> */}
                     {format(new Date(project.startDate), 'MMM yy')} - {
@@ -214,7 +215,8 @@ export default function RightSection({
                     <div className="absolute left-0 top-0 h-full w-px bg-gray-300 dark:bg-gray-700" />
                     
                     {/* Small Circle (Ping Effect on Hover) */}
-                    <div className="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-gray-500 dark:bg-white group-hover:animate-ping dark:group-hover:bg-green-300 darkgroup-hover:bg-orange-300 group-hover:w-3 group-hover:h-3 group-hover:left-[-6px]" />
+                    <div className="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-gray-500 dark:bg-white group-hover:animate-ping dark:group-hover:bg-green-300 group-hover:bg-orange-300 group-hover:w-3 group-hover:h-3 group-hover:left-[-6px] " />
+                    <div className="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-gray-500 dark:bg-white group-hover:w-3 group-hover:h-3 group-hover:left-[-6px] dark:group-hover:bg-green-300 group-hover:bg-orange-300"/>
 
                     {/* Hoverable Content (Separate from Above Elements) */}
                     <div className="relative group pl-6 cursor-pointer "> 
@@ -240,34 +242,61 @@ export default function RightSection({
 
       case 'blogs':
         return (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
-            {blogPosts.map(post => (
-              <motion.div
-                key={post.id}
-                className="bg-white dark:bg-black border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden cursor-pointer relative hover:border-black dark:hover:border-white"
-                onClick={() => {
-                  setSelectedBlogId(post.id);  // Set the selected blog ID
-                  setSelectedProjectId(null);  // Reset project selection
-                }}
-                
-              >
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-4 pb-12"> {/* Added padding-bottom to avoid overlap */}
-                  <h3 className="font-semibold mb-2 dark:text-white">{post.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300">{post.excerpt}</p>
-                </div>
-                <br />
-                {/* Date positioned at the bottom-right corner */}
-                <p className="bg-gray-300 dark:bg-white-600 px-2 rounded dark:text-black absolute bottom-4 right-4 text-black dark:text-black">
-                  {format(new Date(post.date), 'MMM dd, yyyy')}
-                </p>
-              </motion.div>
-            ))}
-          </div>
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+  {blogPosts.map((post, index) => (
+    <motion.div
+      key={post.id}
+      className="bg-white dark:bg-black border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden cursor-pointer relative hover:border-black dark:hover:border-white"
+      onClick={() => {
+        setSelectedBlogId(post.id);  // Set the selected blog ID
+        setSelectedProjectId(null);  // Reset project selection
+      }}
+    >
+      <img
+        src={post.image}
+        alt={post.title}
+        className="w-full h-48 object-cover"
+      />
+      <div className="p-4 pb-12"> {/* Added padding-bottom to avoid overlap */}
+        <h3 className="font-semibold mb-2 dark:text-white relative">
+          {post.title}
+        </h3>
+        <p className="text-gray-600 dark:text-gray-300">{post.excerpt}</p>
+      </div>
+      <br />
+      {/* Date positioned at the bottom-right corner */}
+        {index === 0 && (
+          <>
+            <p className="bg-gray-300 dark:bg-white-600 px-3 rounded dark:text-black absolute bottom-4 right-4 text-black dark:text-black flex items-center">
+              
+              <span className="inline-flex h-2 w-2 animate-ping rounded-full bg-red-400 opacity-100 absolute left-1"></span>
+              <span className="inline-flex h-2 w-2 rounded-full bg-red-500 absolute left-1"></span>
+              &nbsp;
+              {format(new Date(post.date), 'MMM dd, yyyy')}
+            </p>
+          </>
+        )}
+
+        {index !== 0 && (
+          <>
+            <p className="bg-gray-300 dark:bg-white-600 px-2 rounded dark:text-black absolute bottom-4 right-4 text-black dark:text-black flex items-center">
+                  {/* <span className="inline-flex h-2 w-2 animate-ping rounded-full bg-orange-400 opacity-100 absolute left-1"></span>
+                  <span className="inline-flex h-2 w-2 rounded-full bg-orange-500 absolute left-1"></span>
+              &nbsp; */}
+              {format(new Date(post.date), 'MMM dd, yyyy')}
+            </p>
+          </>
+        )}
+
+
+        
+
+
+
+    </motion.div>
+  ))}
+</div>
+
 
         );
     }
