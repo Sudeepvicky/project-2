@@ -207,7 +207,7 @@ export default function RightSection({
                     <div className="relative group pl-6 cursor-pointer "> 
                       <p>
                         <p className='inline-block hidden group-hover:inline-block'>📆 &nbsp;</p> 
-                        <span className="bg-gray-300 dark:bg-white-600 px-2 rounded text-black dark:text-black">
+                        <span className="bg-gray-300 dark:bg-white-600 px-2 rounded text-black dark:text-black group-hover:bg-orange-300">
                           {format(new Date(entry.date), 'MMM dd, yyyy')}
                         </span>
                       </p>
