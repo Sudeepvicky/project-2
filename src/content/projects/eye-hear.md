@@ -1,28 +1,29 @@
 ---
 id: '2'
-title: 'Empty Head - Training and Management Web Application'
-description: 'A responsive web application for student learning and course management'
-thumbnail: 'https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=800&auto=format&fit=crop&q=60'
-startDate: '2024-02'
-endDate: '2024-05'
-isRemote: true
-techStack: ['React', 'TypeScript', 'Node.js', 'MongoDB']
-skills: ['Project Management', 'Team Leadership', 'Full Stack Development']
-githubUrl: 'https://github.com/username/empty-head'
-fullDescription: |
-  # Empty Head - Training and Management Web Application
+title: 'Eye Hear - Object Detection for Visually Impaired'
+description: 'AI-powered object detection system with voice feedback'
+thumbnail: 'https://images.unsplash.com/photo-1527430253228-e93688616381?w=800&auto=format&fit=crop&q=60'
+startDate: '2022-09'
+endDate: '2023-05'
+isRemote: false
+techStack: ['Python', 'TensorFlow', 'OpenCV', 'COCO Dataset']
+skills: ['Computer Vision', 'Deep Learning', 'Team Leadership']
+githubUrl: 'https://github.com/username/eye-hear'
+---
 
-  Led a team of 25 members in developing a comprehensive web application for student learning and course management.
 
-  ## Key Achievements
-  - Increased user engagement by 40% through responsive design
-  - Enhanced user satisfaction by 30% through improved interaction flow
-  - Achieved 100% completion of project milestones
-  - Successfully coordinated frontend, backend, and database teams
+# Eye Hear - Object Detection System
 
-  ## Technical Details
-  - **Frontend:** React, TypeScript, Tailwind CSS
-  - **Backend:** Node.js, Express
-  - **Database:** MongoDB
-  - **Authentication:** JWT
-  - **Deployment:** AWS
+An innovative solution for visually impaired individuals using AI and computer vision.
+
+## Key Achievements
+- Improved object detection speed by 20%
+- Increased accuracy by 30% using COCO dataset
+- Enhanced accessibility by 25% with voice commands
+- Achieved 95% accuracy in object distance detection
+
+## Technical Implementation
+- Used Python, OpenCV, and TensorFlow for real-time detection
+- Implemented voice command system for user interaction
+- Integrated audio feedback system
+- Developed algorithms for distance calculation`

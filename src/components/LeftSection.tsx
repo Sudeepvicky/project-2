@@ -3,7 +3,7 @@ import { Calendar, File, Github, Linkedin, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { format } from 'date-fns';
 import { projects, blogPosts } from '../data';  // Import blogs
-import profileImage from "../assets/profile-removebg-preview.png";
+import profileImage from "../assets/Profile.png";
 
 
 interface LeftSectionProps {
@@ -15,8 +15,6 @@ export default function LeftSection({ selectedProjectId, selectedBlogId }: LeftS
   const project = selectedProjectId ? projects.find(p => p.id === selectedProjectId) : null;
   const blog = selectedBlogId ? blogPosts.find(b => b.id === selectedBlogId) : null;
 
-  console.log('project : '+project)
-  console.log('blog : '+blog)
 
   return (
     <div className="h-full p-8 space-y-8">
