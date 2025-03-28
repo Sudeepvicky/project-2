@@ -13,7 +13,7 @@ export default function Layout() {
 
 
   return (
-    <div className={`p-4 ${isDarkMode ? 'dark bg-black' : 'bg-gray-100'}`}>
+    <div className={`p-2 ${isDarkMode ? 'dark bg-black' : 'bg-gray-100'}`}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
