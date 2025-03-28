@@ -2,6 +2,7 @@ import { Project, Experience, TILEntry, BlogPost } from './types';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { fr } from 'date-fns/locale';
 
 
 
@@ -147,35 +148,96 @@ A modern finance tracking application for budgeting and expense management.
 
 ];
 
-export const experiences: Experience[] = [
-  {
-    id: '1',
-    company: 'Cognizant',
-    role: 'CDP Intern',
-    startDate: '2023-12',
-    endDate: '2024-05',
-    isRemote: false,
-    url: 'https://www.linkedin.com/company/cognizant/posts/?feedView=all',
-    description: [
-      'Developed expertise in SDET technologies by completing three projects using Selenium, TestNG, and Cucumber',
-      'Improved test automation and software quality assurance skills by 25%'
-    ]
-  },
-  {
-    id: '2',
-    company: '4Crisk.ai',
-    role: 'Associate Data Engineer',
-    startDate: '2023-07',
-    endDate: '2023-08',
-    isRemote: false,
-    url: 'https://www.linkedin.com/company/4crisk/',
-    description: [
-      'Identified and resolved data pipeline setup errors',
-      'Automated transfer of daily generated folders to Amazon S3 bucket',
-      'Reduced manual intervention by 80%'
-    ]
-  }
-];
+// export const experiences: Experience[] = [
+//   {
+//     id: '1',
+//     company: 'Cognizant',
+//     role: 'CDP Intern',
+//     startDate: '2023-12',
+//     endDate: '2024-05',
+//     isRemote: false,
+//     url: 'https://www.linkedin.com/company/cognizant/posts/?feedView=all',
+//     description: [
+//       'Developed expertise in SDET technologies by completing three projects using Selenium, TestNG, and Cucumber',
+//       'Improved test automation and software quality assurance skills by 25%'
+//     ]
+//   },
+//   {
+//     id: '2',
+//     company: '4Crisk.ai',
+//     role: 'Associate Data Engineer',
+//     startDate: '2023-07',
+//     endDate: '2023-08',
+//     isRemote: false,
+//     url: 'https://www.linkedin.com/company/4crisk/',
+//     description: [
+//       'Identified and resolved data pipeline setup errors',
+//       'Automated transfer of daily generated folders to Amazon S3 bucket',
+//       'Reduced manual intervention by 80%'
+//     ]
+//   }
+// ];
+
+
+
+
+const experienceModules = import.meta.glob('./content/experiences/*.md', { 
+  query: '?raw',
+  import: 'default',
+  eager: true 
+});
+
+function experienceParseFrontMatter(content: string): { frontMatter: Record<string, any>, markdown: string } {
+  const frontMatterMatch = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)/);
+  if (!frontMatterMatch) return { frontMatter: {}, markdown: content };
+
+  const frontMatter = frontMatterMatch[1];
+  const markdown = frontMatterMatch[2];
+
+  const frontMatterObj: Record<string, any> = {};
+  frontMatter.split('\n').forEach(line => {
+    const match = line.match(/^([^:]+):\s*(.*)/);
+    if (match) {
+      const key = match[1].trim();
+      let value: any = match[2].trim();
+      
+      // Handle arrays
+      if (value.startsWith('[') && value.endsWith(']')) {
+        value = value.slice(1, -1).split(',').map(item => item.trim().replace(/['"]/g, ''));
+      }
+      // Handle dates and strings
+      else if (/^['"].*['"]$/.test(value)) {
+        value = value.slice(1, -1);
+      }
+      
+      frontMatterObj[key] = value;
+    }
+  });
+
+  return { frontMatter: frontMatterObj, markdown };
+}
+
+export const experiences: Experience[] = Object.entries(experienceModules).map(([path, content]) => {
+  const id = path.split('/').pop()?.replace('.md', '') || '0';
+  const { frontMatter, markdown } = experienceParseFrontMatter(content as string);
+
+  console.log(frontMatter.description)  
+
+  return {
+    id,
+    company: frontMatter.company,
+    role: frontMatter.role,
+    startDate: frontMatter.startDate,
+    endDate: frontMatter.endDate,
+    isRemote: frontMatter.isRemote,
+    url: frontMatter.url,
+    description: frontMatter.description || []
+  };
+}).sort((a, b) => new Date(b.endDate).getTime() - new Date(a.endDate).getTime());
+
+
+
+
 
 
 const tilModules = import.meta.glob('./content/til/*.md', { 
