@@ -33,6 +33,7 @@ export default function RightSection({
   const renderHeader = () => (
     <div className="flex space-x-2 p-3 bg-white dark:bg-black rounded-tl-lg">
   {tabs.map(tab => (
+    
     <button
       key={tab}
       onClick={() => {
@@ -46,7 +47,8 @@ export default function RightSection({
           : 'text-gray-500 dark:text-gray-500 hover:bg-gray-200 dark:hover:text-white dark:hover:bg-gray-700'
       }`}
     >
-      {tab.charAt(0).toUpperCase() + tab.slice(1)}
+      {tab.charAt(0).toUpperCase() + tab.slice(1)} 
+      
     </button>
   ))}
 </div>
@@ -118,7 +120,7 @@ export default function RightSection({
                 </div>
                 
                 {/* Date and Icon placed at the bottom-right */}
-                <div className="bg-gray-300 dark:bg-white-600 px-2 rounded text-gray-500 dark:text-black absolute bottom-4 right-4">
+                <div className="bg-gray-300 dark:bg-white-600 px-2 rounded text-black dark:text-black absolute bottom-4 right-4">
                   <span className="flex items-center justify-center">
                     {/* <Calendar className="w-[7%] h-[7%] mr-1" /> */}
                     {format(new Date(project.startDate), 'MMM yy')} - {
@@ -151,14 +153,14 @@ export default function RightSection({
                   <div>
                     <h3 className="font-semibold dark:text-white">{exp.role} &nbsp; 
                     {exp.isRemote ? (
-                        <p className='inline bg-gray-300 text-gray-500 px-1 rounded dark:text-black'>remote</p>
+                        <p className='inline bg-gray-300 text-black px-1 rounded dark:text-black'>remote</p>
                       ) : (
-                        <p className='inline bg-gray-300 text-gray-500 px-1 rounded dark:text-black'>Onsite</p>
+                        <p className='inline bg-gray-300 text-black px-1 rounded dark:text-black'>Onsite</p>
                       )}
                     </h3>
                     <a className="text-gray-600 dark:text-gray-300" href={exp.url} target='_blank'>{exp.company}</a>
                   </div>
-                  <div className="bg-gray-300 dark:bg-white-600 px-2 rounded dark:text-black  flex items-center justify-end text-gray-500 dark:text-black">
+                  <div className="bg-gray-300 dark:bg-white-600 px-2 rounded dark:text-black  flex items-center justify-end text-black dark:text-black">
                     {/* <Calendar className="w-4 h-4 mr-1" /> */}
                     <span>
                       {format(new Date(exp.startDate), 'MMM yy')} - {
@@ -188,25 +190,35 @@ export default function RightSection({
             <div className="relative">
               {tilEntries.map((entry, index) => (
                 <motion.div
-                  key={entry.id}
-                  initial={{ opacity: 0, x: -20 }}
+                  key={entry.id} 
+                  initial={{ opacity: 0, x: -20 }} 
                   animate={{ opacity: 1, x: 0 }}
-                  className="relative pl-8 pb-8"
+                  className="relative pl-8"
                 >
-                  <div className="absolute left-0 top-0 h-full w-px bg-gray-300 dark:bg-gray-700" />
-                  <div className="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-gray-500 dark:bg-white" />
-                  <div className="group relative">
-                    <p >
-                      <span className="bg-gray-300 dark:bg-white-600 px-2 rounded text-gray-500 dark:text-black">
+                  
+                  <div className="relative group pb-8 cursor">
+                    {/* Vertical Line (Fixed Position) */}
+                    <div className="absolute left-0 top-0 h-full w-px bg-gray-300 dark:bg-gray-700" />
+                    
+                    {/* Small Circle (Ping Effect on Hover) */}
+                    <div className="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-gray-500 dark:bg-white group-hover:animate-ping group-hover:bg-orange-500 group-hover:w-3 group-hover:h-3 group-hover:left-[-6px]" />
 
-                      {format(new Date(entry.date), 'MMM dd, yyyy')}
-                      </span>
-                    </p>
-                    <h3 className="font-semibold mt-1 dark:text-white">{entry.title}</h3>
-                    <div className="mt-2 text-gray-600 dark:text-gray-300 ">
-                      {entry.description}
+                    {/* Hoverable Content (Separate from Above Elements) */}
+                    <div className="relative group pl-6 cursor-pointer "> 
+                      <p>
+                        <p className='inline-block hidden group-hover:inline-block'>📆 &nbsp;</p> 
+                        <span className="bg-gray-300 dark:bg-white-600 px-2 rounded text-black dark:text-black">
+                          {format(new Date(entry.date), 'MMM dd, yyyy')}
+                        </span>
+                      </p>
+                      <h3 className="font-semibold mt-1 dark:text-white">
+                        {entry.title}</h3>
+                      <div className="mt-2 text-gray-600 dark:text-gray-300">
+                        {entry.description}
+                      </div>
                     </div>
                   </div>
+
                 </motion.div>
               ))}
             </div>
@@ -237,7 +249,7 @@ export default function RightSection({
                 </div>
                 <br />
                 {/* Date positioned at the bottom-right corner */}
-                <p className="bg-gray-300 dark:bg-white-600 px-2 rounded dark:text-black absolute bottom-4 right-4 text-gray-500 dark:text-black">
+                <p className="bg-gray-300 dark:bg-white-600 px-2 rounded dark:text-black absolute bottom-4 right-4 text-black dark:text-black">
                   {format(new Date(post.date), 'MMM dd, yyyy')}
                 </p>
               </motion.div>
