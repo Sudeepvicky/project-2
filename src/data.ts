@@ -1,4 +1,9 @@
 import { Project, Experience, TILEntry, BlogPost } from './types';
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+
+
 
 export const projects: Project[] = [
   {
@@ -235,62 +240,54 @@ export const tilEntries: TILEntry[] = [
   }
 ];
 
-export const blogPosts: BlogPost[] = [
-  {
-    id: '1',
-    title: 'Building Scalable Web Applications',
-    excerpt: 'Learn the best practices for creating scalable web applications with modern technologies.',
-    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&auto=format&fit=crop&q=60',
-    tags: ['React', 'TypeScript', 'Node.js', 'MongoDB'],
-    category: ['Project Management', 'Team Leadership', 'Full Stack Development'],
-    content: `# Building Scalable Web Applications
+const blogModules = import.meta.glob('./content/blogs/*.md', { 
+  query: '?raw',
+  import: 'default',
+  eager: true 
+});
 
-In this comprehensive guide, we'll explore the essential principles and practices for building scalable web applications that can handle growing user bases and increasing demands.
+function parseFrontMatter(content: string): { frontMatter: Record<string, any>, markdown: string } {
+  const frontMatterMatch = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)/);
+  if (!frontMatterMatch) return { frontMatter: {}, markdown: content };
 
-## Key Topics Covered
-1. Microservices Architecture
-2. Load Balancing
-3. Caching Strategies
-4. Database Optimization
-5. Containerization
+  const frontMatter = frontMatterMatch[1];
+  const markdown = frontMatterMatch[2];
 
-## Best Practices
-- Use horizontal scaling
-- Implement caching at multiple levels
-- Design for failure
-- Monitor performance metrics
-- Automate deployment processes`,
-    date: '2024-03-20'
-  },
-  {
-    "id": "2",
-    "title": "Mastering React for Modern Web Development",
-    "excerpt": "A deep dive into building high-performance web applications using React and its ecosystem.",
-    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=60",
-    tags: ['React', 'TypeScript', 'Node.js', 'MongoDB'],
-    category: ['Project Management', 'Team Leadership', 'Full Stack Development'],
-    "content": "# Mastering React for Modern Web Development\n\nReact is one of the most popular libraries for building dynamic user interfaces. This guide covers advanced concepts to help you master React.\n\n## Key Topics Covered\n1. Functional Components & Hooks\n2. State Management with Redux\n3. Performance Optimization\n4. Server-Side Rendering (SSR)\n5. Component Design Patterns\n\n## Best Practices\n- Use functional components and hooks\n- Optimize re-renders with React.memo\n- Implement code-splitting for faster loads\n- Follow a modular component structure",
-    "date": "2024-04-10"
-  },
-  {
-    "id": "3",
-    "title": "Understanding Database Indexing",
-    "excerpt": "A beginner-friendly guide to database indexing and its impact on query performance.",
-    "image": "https://i.pinimg.com/736x/45/9c/f6/459cf6adaa78fe352edc2bf3a0292589.jpg",
-    tags: ['React', 'TypeScript', 'Node.js', 'MongoDB'],
-    category: ['Project Management', 'Team Leadership', 'Full Stack Development'],
-    "content": "# Understanding Database Indexing\n\nDatabase indexing is a key performance optimization technique. This guide explains indexing strategies to improve query execution time.\n\n## Key Topics Covered\n1. What is Indexing?\n2. Types of Indexes\n3. How Indexing Improves Performance\n4. Best Practices for Using Indexes\n5. When Not to Use Indexes\n\n## Best Practices\n- Use indexes for frequently queried columns\n- Avoid excessive indexing to prevent overhead\n- Regularly analyze and optimize indexes\n- Consider composite indexes for multi-column queries",
-    "date": "2024-05-05"
-  },
-  {
-    "id": "4",
-    "title": "Introduction to Cloud Computing",
-    "excerpt": "An essential guide to understanding cloud computing and its various service models.",
-    "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&q=60",
-    tags: ['React', 'TypeScript', 'Node.js', 'MongoDB'],
-    category: ['Project Management', 'Team Leadership', 'Full Stack Development'],
-    "content": "# Introduction to Cloud Computing\n\nCloud computing is transforming the way businesses operate by providing scalable and flexible infrastructure. This guide covers the fundamentals of cloud computing.\n\n## Key Topics Covered\n1. What is Cloud Computing?\n2. Cloud Service Models (IaaS, PaaS, SaaS)\n3. Benefits of Cloud Computing\n4. Popular Cloud Providers\n5. Security in the Cloud\n\n## Best Practices\n- Choose the right cloud provider based on your needs\n- Implement strong security measures\n- Use auto-scaling for cost efficiency\n- Monitor cloud resources to optimize performance",
-    "date": "2024-06-15"
-  }
+  const frontMatterObj: Record<string, any> = {};
+  frontMatter.split('\n').forEach(line => {
+    const match = line.match(/^([^:]+):\s*(.*)/);
+    if (match) {
+      const key = match[1].trim();
+      let value: any = match[2].trim();
+      
+      // Handle arrays
+      if (value.startsWith('[') && value.endsWith(']')) {
+        value = value.slice(1, -1).split(',').map(item => item.trim().replace(/['"]/g, ''));
+      }
+      // Handle dates and strings
+      else if (/^['"].*['"]$/.test(value)) {
+        value = value.slice(1, -1);
+      }
+      
+      frontMatterObj[key] = value;
+    }
+  });
 
-];
+  return { frontMatter: frontMatterObj, markdown };
+}
+
+export const blogPosts: BlogPost[] = Object.entries(blogModules).map(([path, content]) => {
+  const id = path.split('/').pop()?.replace('.md', '') || '0';
+  const { frontMatter, markdown } = parseFrontMatter(content as string);
+
+  return {
+    id,
+    title: frontMatter.title || 'Untitled Post',
+    excerpt: frontMatter.excerpt || '',
+    image: frontMatter.image || '',
+    tags: frontMatter.tags || [],
+    category: frontMatter.category || frontMatter.categories || [],
+    content: markdown,
+    date: frontMatter.date || new Date().toISOString(),
+  };
+}).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());

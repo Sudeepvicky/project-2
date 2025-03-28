@@ -63,7 +63,7 @@ export default function RightSection({
             Back to Projects
           </button>
           <ReactMarkdown className="prose dark:prose-invert max-w-none dark:text-gray-300">
-            {project.fullDescription}
+            {project?.fullDescription}
           </ReactMarkdown>
         </div>
       );
@@ -80,11 +80,11 @@ export default function RightSection({
             >
               <ArrowLeft className="w-[11%] h-[11%] mr-2" />
               Back to Blogs
-            </button>
+            </button> 
             
           </div>
           <div className="prose dark:prose-invert max-w-none dark:text-gray-300">
-            <ReactMarkdown>{blog.content}</ReactMarkdown>
+            <ReactMarkdown>{blog?.content}</ReactMarkdown>
           </div>
         </div>
       );

@@ -3,6 +3,8 @@ id: "1"
 title: "Building Scalable Web Applications"
 excerpt: "Learn the best practices for creating scalable web applications with modern technologies."
 image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&auto=format&fit=crop&q=60"
+tags: ["React","TypeScript","Node.js","MongoDB"]
+categories: ["Project Management","Team Leadership","Full Stack Development"]
 date: "2024-03-20"
 ---
 
