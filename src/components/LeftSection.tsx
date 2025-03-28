@@ -142,7 +142,15 @@ export default function LeftSection({ selectedProjectId, selectedBlogId }: LeftS
           <div className="space-y-4">
             <h2 className="text-xl font-semibold dark:text-white">Connect</h2>
 
+
             <div className="flex space-x-4 justify-center">
+              <button 
+                data-cal-link="battu-sudeep-szrywp/15min"
+                data-cal-namespace="15min"
+                data-cal-config='{"layout":"month_view"}'
+                className='text-white dark:text-black bg-black dark:bg-white px-3 pc-1 rounded'>
+                Schedule Call
+              </button>
               <a
                 href="../assets/Battu Sudeep_1.pdf"
                 download="Resume.pdf"
