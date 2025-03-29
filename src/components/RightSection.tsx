@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Building2, Home, ArrowLeft } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
@@ -19,8 +19,12 @@ interface RightSectionProps {
   setSelectedBlogId: (id: string | null) => void;
 }
 
-var latestBlog: Boolean = false;
-var latestTil: Boolean = false;
+var latestBlog = false;
+var latestTil  = false;
+
+
+
+
 
 export default function RightSection({
   activeTab,
@@ -30,50 +34,56 @@ export default function RightSection({
   selectedBlogId,
   setSelectedBlogId
 }: RightSectionProps) {
+  const [latestBLOG, setLatestBLOG] = useState(false);
+  const [latestTIL, setLatestTIL] = useState(false);
 
+  useEffect(() => {
+    setLatestBLOG(latestBlog);
+    setLatestTIL(latestTil); 
+  }, []); 
   // const [latestBlog, setLatestBlog] = useState(false); 
   // var latestBlog: Boolean = false;
   // const [selectedBlogId, setSelectedBlogId] = React.useState<string | null>(null);
   const tabs: Tab[] = ['projects', 'experience', 'til', 'blogs'];
   
   const renderHeader = () => (
-    <div className="flex space-x-2 p-3 bg-white dark:bg-black rounded-tl-lg">
-  {tabs.map((tab: string) => ( // Explicitly define tab as a string
-    <button
-      key={tab}
-      onClick={() => {
-        setActiveTab(tab);
-        setSelectedProjectId(null);
-        setSelectedBlogId(null); 
-      }}
-      className={`px-3 py-1 md:px-4 md:py-2 rounded-lg flex items-center space-x-2 ${
-        activeTab === tab
-          ? 'bg-gray-300 text-black dark:bg-white dark:text-black'
-          : 'text-gray-500 dark:text-gray-500 hover:bg-gray-200 dark:hover:text-white dark:hover:bg-gray-700'
-      }`}
-    >
-      {/* Tab Text */}
-      <span>{tab.charAt(0).toUpperCase() + tab.slice(1)}</span> 
+        <div className="flex space-x-2 p-3 bg-white dark:bg-black rounded-tl-lg">
+          {tabs.map((tab: string) => ( // Explicitly define tab as a string
+            <button
+              key={tab}
+              onClick={() => {
+                setActiveTab(tab);
+                setSelectedProjectId(null);
+                setSelectedBlogId(null); 
+              }}
+              className={`px-3 py-1 md:px-4 md:py-2 rounded-lg flex items-center space-x-2 ${
+                activeTab === tab
+                  ? 'bg-gray-300 text-black dark:bg-white dark:text-black'
+                  : 'text-gray-500 dark:text-gray-500 hover:bg-gray-200 dark:hover:text-white dark:hover:bg-gray-700'
+              }`}
+            >
+              {/* Tab Text */}
+              <span>{tab.charAt(0).toUpperCase() + tab.slice(1)}</span> 
 
-      {tab === 'til' && latestTil === true && ( 
-        <div className="relative flex items-center">
-          <span className="inline-flex h-[0.3rem] w-[0.3rem] sm:h-[0.4rem] sm:w-[0.4rem] md:h-[0.5rem] md:w-[0.5rem] lg:h-[0.6rem] lg:w-[0.6rem] animate-ping rounded-full bg-orange-400 opacity-75"></span>
-          <span className="inline-flex h-[0.3rem] w-[0.3rem] sm:h-[0.4rem] sm:w-[0.4rem] md:h-[0.5rem] md:w-[0.5rem] lg:h-[0.6rem] lg:w-[0.6rem] rounded-full bg-orange-500 absolute"></span>
+              {tab === 'til' && latestTIL && ( 
+                <div className="relative flex items-center">
+                  <span className="inline-flex h-[0.3rem] w-[0.3rem] sm:h-[0.4rem] sm:w-[0.4rem] md:h-[0.5rem] md:w-[0.5rem] lg:h-[0.6rem] lg:w-[0.6rem] animate-ping rounded-full bg-orange-400 opacity-75"></span>
+                  <span className="inline-flex h-[0.3rem] w-[0.3rem] sm:h-[0.4rem] sm:w-[0.4rem] md:h-[0.5rem] md:w-[0.5rem] lg:h-[0.6rem] lg:w-[0.6rem] rounded-full bg-orange-500 absolute"></span>
+                </div>
+              )}
+
+              {tab === 'blogs' && latestBLOG &&( 
+                <div className="relative flex items-center">
+                  <span className="inline-flex h-[0.3rem] w-[0.3rem] sm:h-[0.4rem] sm:w-[0.4rem] md:h-[0.5rem] md:w-[0.5rem] lg:h-[0.6rem] lg:w-[0.6rem] animate-ping rounded-full bg-red-400 opacity-75"></span>
+                  <span className="inline-flex h-[0.3rem] w-[0.3rem] sm:h-[0.4rem] sm:w-[0.4rem] md:h-[0.5rem] md:w-[0.5rem] lg:h-[0.6rem] lg:w-[0.6rem] rounded-full bg-red-500 absolute"></span>
+                </div>
+              )}
+
+
+
+            </button>
+          ))}
         </div>
-      )}
-
-      {tab === 'blogs' && latestBlog === true &&( 
-        <div className="relative flex items-center">
-          <span className="inline-flex h-[0.3rem] w-[0.3rem] sm:h-[0.4rem] sm:w-[0.4rem] md:h-[0.5rem] md:w-[0.5rem] lg:h-[0.6rem] lg:w-[0.6rem] animate-ping rounded-full bg-red-400 opacity-75"></span>
-          <span className="inline-flex h-[0.3rem] w-[0.3rem] sm:h-[0.4rem] sm:w-[0.4rem] md:h-[0.5rem] md:w-[0.5rem] lg:h-[0.6rem] lg:w-[0.6rem] rounded-full bg-red-500 absolute"></span>
-        </div>
-      )}
-
-
-
-    </button>
-  ))}
-</div>
 
 
 
@@ -132,8 +142,12 @@ export default function RightSection({
       );
     }
 
+   
+
     switch (activeTab) {
       case 'projects':
+        
+        // setLatestBLOG(latestBlog);
         return (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
             {projects.map(project => (
@@ -184,7 +198,8 @@ export default function RightSection({
                     const currentDate = new Date();
                     const threeDaysAgo = new Date();
                     threeDaysAgo.setDate(currentDate.getDate() - 8);
-                    latestBlog = (postDate >= threeDaysAgo && postDate <= currentDate) || latestBlog;  
+                    latestBlog = (postDate >= threeDaysAgo && postDate <= currentDate) || latestBlog;
+                    
                     console.log('------> notification dots for blogs : '+latestBlog)
                     
 
@@ -382,9 +397,24 @@ export default function RightSection({
                   <p className="text-gray-600 dark:text-gray-300">{post.excerpt}</p>
                 </div>
                 <br />
+
+                
                 
                 {/* Check if the date is within the last 3 days */}
                   {(() => {
+
+                    // useEffect(() => {
+                    //   const postDate = new Date(post.date);
+                    //   const currentDate = new Date();
+                    //   // Calculate three days ago (or any period, here 8 days subtracted as per your code)
+                    //   const threeDaysAgo = new Date();
+                    //   threeDaysAgo.setDate(currentDate.getDate() - 8);
+                    //   // Determine if the post date is between threeDaysAgo and currentDate
+                    //   const isLatest = postDate >= threeDaysAgo && postDate <= currentDate;
+                    //   setLatestBLOG(isLatest); 
+                    // }, [post.date]);
+
+
                     const postDate = new Date(post.date);
                     const currentDate = new Date();
                     const threeDaysAgo = new Date();
@@ -395,7 +425,9 @@ export default function RightSection({
                       3: '400', 4: '400', 5: '400', 
                       6: '300', 7: '300' 
                     };
-                    latestBlog = (postDate >= threeDaysAgo && postDate <= currentDate) || latestBlog;  
+                    latestBlog = (postDate >= threeDaysAgo && postDate <= currentDate) || latestBlog; 
+                    // setLatestBLOG(latestBlog); 
+                    // console.log('--------------> '+latestBLOG)  
                     
 
                     return (postDate >= threeDaysAgo && postDate <= currentDate) ? (
