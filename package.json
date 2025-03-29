@@ -1,17 +1,11 @@
 {
-  "homepage": "https://Sudeepvicky.github.io/project-2", 
   "name": "vite-react-typescript-starter",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "react-scripts start",
     "dev": "vite",
-    "predeploy": "npm run build", 
-    "deploy": "gh-pages -d build",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -46,4 +40,3 @@
     "vite": "^6.2.3"
   }
 }
-
