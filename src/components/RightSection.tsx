@@ -22,6 +22,8 @@ interface RightSectionProps {
 var latestBlog = false;
 var latestTil  = false;
 
+var totalBlog = 0;
+var totalTil  = 0;
 
 
 
@@ -36,10 +38,14 @@ export default function RightSection({
 }: RightSectionProps) {
   const [latestBLOG, setLatestBLOG] = useState(false);
   const [latestTIL, setLatestTIL] = useState(false);
-
+  const [totalTIL,setTotalTIL] = useState("");
+  const [totalBLOG,setTotalBLOG] = useState("");
+  
   useEffect(() => {
     setLatestBLOG(latestBlog);
-    setLatestTIL(latestTil); 
+    setLatestTIL(latestTil);
+    setTotalBLOG(totalBlog.toString());
+    setTotalTIL(totalTil.toString());  
   }, []); 
   // const [latestBlog, setLatestBlog] = useState(false); 
   // var latestBlog: Boolean = false;
@@ -67,16 +73,23 @@ export default function RightSection({
 
               {tab === 'til' && latestTIL && ( 
                 <div className="relative flex items-center">
-                  <span className="inline-flex h-[0.3rem] w-[0.3rem] sm:h-[0.4rem] sm:w-[0.4rem] md:h-[0.5rem] md:w-[0.5rem] lg:h-[0.6rem] lg:w-[0.6rem] animate-ping rounded-full bg-orange-400 opacity-75"></span>
-                  <span className="inline-flex h-[0.3rem] w-[0.3rem] sm:h-[0.4rem] sm:w-[0.4rem] md:h-[0.5rem] md:w-[0.5rem] lg:h-[0.6rem] lg:w-[0.6rem] rounded-full bg-orange-500 absolute"></span>
-                </div>
+                <span className="inline-flex h-[0.6rem] w-[0.6rem] sm:h-[0.7rem] sm:w-[0.7rem] md:h-[0.8rem] md:w-[0.8rem] lg:h-[0.9rem] lg:w-[0.9rem] animate-ping rounded-full bg-orange-400 opacity-75"></span>
+                <span className="inline-flex h-[0.6rem] w-[0.6rem] sm:h-[0.7rem] sm:w-[0.7rem] md:h-[0.8rem] md:w-[0.8rem] lg:h-[0.9rem] lg:w-[0.9rem] rounded-full bg-orange-500 absolute text-black text-[6px] sm:text-[7px] md:text-[8px] font-bold flex items-center justify-center">
+                {Number(totalTIL) > 18 ? '9+' : Math.floor(Number(totalTIL) / 2)}
+                </span>
+              </div>
+              
+
               )}
 
               {tab === 'blogs' && latestBLOG &&( 
                 <div className="relative flex items-center">
-                  <span className="inline-flex h-[0.3rem] w-[0.3rem] sm:h-[0.4rem] sm:w-[0.4rem] md:h-[0.5rem] md:w-[0.5rem] lg:h-[0.6rem] lg:w-[0.6rem] animate-ping rounded-full bg-red-400 opacity-75"></span>
-                  <span className="inline-flex h-[0.3rem] w-[0.3rem] sm:h-[0.4rem] sm:w-[0.4rem] md:h-[0.5rem] md:w-[0.5rem] lg:h-[0.6rem] lg:w-[0.6rem] rounded-full bg-red-500 absolute"></span>
-                </div>
+                <span className="inline-flex h-[0.6rem] w-[0.6rem] sm:h-[0.7rem] sm:w-[0.7rem] md:h-[0.8rem] md:w-[0.8rem] lg:h-[0.9rem] lg:w-[0.9rem] animate-ping rounded-full bg-red-400 opacity-75"></span>
+                <span className="inline-flex h-[0.6rem] w-[0.6rem] sm:h-[0.7rem] sm:w-[0.7rem] md:h-[0.8rem] md:w-[0.8rem] lg:h-[0.9rem] lg:w-[0.9rem] rounded-full bg-red-500 absolute text-black text-[6px] sm:text-[7px] md:text-[8px] font-bold flex items-center justify-center">
+                {Number(totalBLOG) > 18 ? '9+' : Math.floor(Number(totalBLOG) / 2)}
+
+                </span>
+              </div>
               )}
 
 
@@ -193,14 +206,16 @@ export default function RightSection({
               <motion.div
                 className="hidden"
               > 
-                {(() => {
+                {(() => { 
                     const postDate = new Date(post.date);
                     const currentDate = new Date();
                     const threeDaysAgo = new Date();
                     threeDaysAgo.setDate(currentDate.getDate() - 8);
                     latestBlog = (postDate >= threeDaysAgo && postDate <= currentDate) || latestBlog;
-                    
-                    console.log('------> notification dots for blogs : '+latestBlog)
+                    if(postDate >= threeDaysAgo && postDate <= currentDate){
+                      totalBlog += 1;
+                    } 
+                      
                     
 
                     return (postDate >= threeDaysAgo && postDate <= currentDate) ? (
@@ -221,9 +236,10 @@ export default function RightSection({
                     const currentDate = new Date();
                     const threeDaysAgo = new Date();
                     threeDaysAgo.setDate(currentDate.getDate() - 8);
-                    latestTil = (postDate >= threeDaysAgo && postDate <= currentDate) || latestTil;  
-                    console.log('------> notification dots for til : '+latestTil) 
-                    
+                    latestTil = (postDate >= threeDaysAgo && postDate <= currentDate) || latestTil;
+                    if(postDate >= threeDaysAgo && postDate <= currentDate){
+                        totalTil += 1;  
+                    } 
 
                     return (postDate >= threeDaysAgo && postDate <= currentDate) ? (
                       <></>
