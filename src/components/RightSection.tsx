@@ -8,6 +8,7 @@ import remarkGfm from "remark-gfm";
 import { format, lastDayOfDecade } from 'date-fns';
 import { Tab } from '../types';
 import { projects, experiences, tilEntries, blogPosts } from '../data';
+import { col } from 'framer-motion/client';
 
 interface RightSectionProps {
   activeTab: string;
@@ -283,6 +284,11 @@ export default function RightSection({
                 const threeDaysAgo = new Date();
                 threeDaysAgo.setDate(currentDate.getDate() - 8);
                 const orgDate = currentDate.getDate() - postDate.getDate()
+                const color: Record<number, string> = { 
+                  0: '500', 1: '500', 2: '500', 
+                  3: '400', 4: '400', 5: '400', 
+                  6: '300', 7: '300' 
+                };
                 latestTil = (postDate >= threeDaysAgo && postDate <= currentDate) || latestTil;  
                 
 
@@ -293,16 +299,16 @@ export default function RightSection({
                     <div className="absolute left-0 top-0 h-full w-px bg-gray-300 dark:bg-gray-700" />
                     
                     {/* Small Circle (Ping Effect on Hover) */}
-                    <div className="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-gray-500 dark:bg-white group-hover:animate-ping dark:group-hover:bg-green-300 group-hover:bg-green-300 group-hover:w-3 group-hover:h-3 group-hover:left-[-6px] " />
-                    <div className="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-gray-500 dark:bg-white group-hover:w-3 group-hover:h-3 group-hover:left-[-6px] dark:group-hover:bg-green-300 group-hover:bg-green-300"/>
+                    <div className={`absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-green-${color[orgDate]} dark:bg-green-${color[orgDate]} group-hover:animate-ping  group-hover:bg-green-${color[orgDate]} group-hover:w-3 group-hover:h-3 group-hover:left-[-6px] `} />
+                    <div className={`absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-green-${color[orgDate]} dark:bg-green-${color[orgDate]} group-hover:w-3 group-hover:h-3 group-hover:left-[-6px]  group-hover:bg-green-${color[orgDate]}  `}/>
 
                     <div className="relative group pl-6 cursor-pointer "> 
                     <p>
                       <p className='inline-block hidden group-hover:inline-block'>📆 &nbsp;</p> 
-                      <span className="bg-green-300 dark:bg-white-600 px-2 rounded text-black dark:text-black" >
-                        {/* {format(new Date(entry.date), 'MMM dd, yyyy')} */}
+                      <span className={`bg-green-${color[orgDate]} dark:bg-white-600 px-2 rounded text-black dark:text-black`}>
                         {orgDate === 0 ? "Today" : `${orgDate} days ago`}
                       </span>
+
                     </p>
                     <h3 className="font-semibold mt-1 dark:text-white">
                       {entry.title}</h3>
@@ -378,15 +384,20 @@ export default function RightSection({
                     const threeDaysAgo = new Date();
                     threeDaysAgo.setDate(currentDate.getDate() - 8);
                     const orgDate = currentDate.getDate() - postDate.getDate()
+                    const color: Record<number, string> = { 
+                      0: '500', 1: '500', 2: '500', 
+                      3: '400', 4: '400', 5: '400', 
+                      6: '300', 7: '300' 
+                    };
                     latestBlog = (postDate >= threeDaysAgo && postDate <= currentDate) || latestBlog;  
                     
 
                     return (postDate >= threeDaysAgo && postDate <= currentDate) ? (
-                      <p className="bg-green-300 dark:bg-white-600 px-3 rounded dark:text-black absolute bottom-4 right-4 text-black dark:text-black flex items-center space-x-2">
-                        <div className="relative flex items-center">
+                      <p className={`bg-green-${color[orgDate]} dark:bg-white-600 px-3 rounded dark:text-black absolute bottom-4 right-4 text-black dark:text-black flex items-center space-x-2`}>
+                        {/* <div className="relative flex items-center">
                           <span className="inline-flex h-[0.3rem] w-[0.3rem] sm:h-[0.4rem] sm:w-[0.4rem] md:h-[0.5rem] md:w-[0.5rem] lg:h-[0.6rem] lg:w-[0.6rem] animate-ping rounded-full bg-red-600 opacity-75"></span>
                           <span className="inline-flex h-[0.3rem] w-[0.3rem] sm:h-[0.4rem] sm:w-[0.4rem] md:h-[0.5rem] md:w-[0.5rem] lg:h-[0.6rem] lg:w-[0.6rem] rounded-full bg-red-600 absolute"></span>
-                        </div>
+                        </div> */}
                         <div>
                           {orgDate === 0 ? "Today" : `${orgDate} days ago`}
                         </div>
