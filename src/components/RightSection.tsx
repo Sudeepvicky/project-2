@@ -75,7 +75,7 @@ export default function RightSection({
                 <div className="relative flex items-center">
                 <span className="inline-flex h-[0.6rem] w-[0.6rem] sm:h-[0.7rem] sm:w-[0.7rem] md:h-[0.8rem] md:w-[0.8rem] lg:h-[0.9rem] lg:w-[0.9rem] animate-ping rounded-full bg-orange-400 opacity-75"></span>
                 <span className="inline-flex h-[0.6rem] w-[0.6rem] sm:h-[0.7rem] sm:w-[0.7rem] md:h-[0.8rem] md:w-[0.8rem] lg:h-[0.9rem] lg:w-[0.9rem] rounded-full bg-orange-500 absolute text-black text-[6px] sm:text-[7px] md:text-[8px] font-bold flex items-center justify-center">
-                {Number(totalTIL) > 18 ? '9+' : Math.floor(Number(totalTIL) / 2)}
+                  {Number(totalTIL) > 18 ? '9+' : totalTIL} 
                 </span>
               </div>
               
@@ -86,8 +86,7 @@ export default function RightSection({
                 <div className="relative flex items-center">
                 <span className="inline-flex h-[0.6rem] w-[0.6rem] sm:h-[0.7rem] sm:w-[0.7rem] md:h-[0.8rem] md:w-[0.8rem] lg:h-[0.9rem] lg:w-[0.9rem] animate-ping rounded-full bg-red-400 opacity-75"></span>
                 <span className="inline-flex h-[0.6rem] w-[0.6rem] sm:h-[0.7rem] sm:w-[0.7rem] md:h-[0.8rem] md:w-[0.8rem] lg:h-[0.9rem] lg:w-[0.9rem] rounded-full bg-red-500 absolute text-black text-[6px] sm:text-[7px] md:text-[8px] font-bold flex items-center justify-center">
-                {Number(totalBLOG) > 18 ? '9+' : Math.floor(Number(totalBLOG) / 2)}
-
+                {Number(totalBLOG) > 9 ? '9+' : totalBLOG}
                 </span>
               </div>
               )}
