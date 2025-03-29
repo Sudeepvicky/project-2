@@ -299,13 +299,19 @@ export default function RightSection({
                     <div className="absolute left-0 top-0 h-full w-px bg-gray-300 dark:bg-gray-700" />
                     
                     {/* Small Circle (Ping Effect on Hover) */}
-                    <div className={`absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-green-${color[orgDate]} dark:bg-green-${color[orgDate]} group-hover:animate-ping  group-hover:bg-green-${color[orgDate]} group-hover:w-3 group-hover:h-3 group-hover:left-[-6px] `} />
-                    <div className={`absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-green-${color[orgDate]} dark:bg-green-${color[orgDate]} group-hover:w-3 group-hover:h-3 group-hover:left-[-6px]  group-hover:bg-green-${color[orgDate]}  `}/>
+                    {/* <div className={`absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-green-${color[orgDate]} dark:bg-green-${color[orgDate]} group-hover:animate-ping  group-hover:bg-green-${color[orgDate]} group-hover:w-3 group-hover:h-3 group-hover:left-[-6px] `} />
+                    <div className={`absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-green-${color[orgDate]} dark:bg-green-${color[orgDate]} group-hover:w-3 group-hover:h-3 group-hover:left-[-6px]  group-hover:bg-green-${color[orgDate]}  `}/> */}
+                    
+                    <div className="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-green-300 dark:bg-green-300 group-hover:animate-ping  group-hover:bg-green-300 group-hover:w-3 group-hover:h-3 group-hover:left-[-6px]" />
+                    <div className="absolute left-[-4px] top-2 w-2 h-2 rounded-full bg-green-300 dark:bg-green-300 group-hover:w-3 group-hover:h-3 group-hover:left-[-6px]  group-hover:bg-green-300 "/>
 
                     <div className="relative group pl-6 cursor-pointer "> 
                     <p>
                       <p className='inline-block hidden group-hover:inline-block'>📆 &nbsp;</p> 
-                      <span className={`bg-green-${color[orgDate]} dark:bg-white-600 px-2 rounded text-black dark:text-black`}>
+                      {/* <span className={`bg-green-${color[orgDate]} dark:bg-white-600 px-2 rounded text-black dark:text-black`}>
+                        {orgDate === 0 ? "Today" : `${orgDate} days ago`}
+                      </span> */}
+                      <span className="bg-green-300 dark:bg-white-600 px-2 rounded text-black dark:text-black"> 
                         {orgDate === 0 ? "Today" : `${orgDate} days ago`}
                       </span>
 
@@ -393,7 +399,7 @@ export default function RightSection({
                     
 
                     return (postDate >= threeDaysAgo && postDate <= currentDate) ? (
-                      <p className={`bg-green-${color[orgDate]} dark:bg-white-600 px-3 rounded dark:text-black absolute bottom-4 right-4 text-black dark:text-black flex items-center space-x-2`}>
+                      <p className={`bg-green-300 dark:bg-white-600 px-3 rounded dark:text-black absolute bottom-4 right-4 text-black dark:text-black flex items-center space-x-2`}>
                         {/* <div className="relative flex items-center">
                           <span className="inline-flex h-[0.3rem] w-[0.3rem] sm:h-[0.4rem] sm:w-[0.4rem] md:h-[0.5rem] md:w-[0.5rem] lg:h-[0.6rem] lg:w-[0.6rem] animate-ping rounded-full bg-red-600 opacity-75"></span>
                           <span className="inline-flex h-[0.3rem] w-[0.3rem] sm:h-[0.4rem] sm:w-[0.4rem] md:h-[0.5rem] md:w-[0.5rem] lg:h-[0.6rem] lg:w-[0.6rem] rounded-full bg-red-600 absolute"></span>
