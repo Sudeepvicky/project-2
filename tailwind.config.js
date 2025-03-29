@@ -10,6 +10,6 @@ export default {
       }
     },
   },
-  plugins: [require('@tailwindcss/typography')],
-  safelist: ["animate-ping"]  
+  plugins: [require('@tailwindcss/typography')], 
+  safelist: ["animate-ping", "bg-green-300", "bg-green-400", "bg-green-500",]  
 };
