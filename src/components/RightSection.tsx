@@ -54,14 +54,14 @@ export default function RightSection({
       {/* Tab Text */}
       <span>{tab.charAt(0).toUpperCase() + tab.slice(1)}</span> 
 
-      {tab === 'til' && latestTil === true && ( 
+      {tab === 'til'  && ( 
         <div className="relative flex items-center">
           <span className="inline-flex h-[0.3rem] w-[0.3rem] sm:h-[0.4rem] sm:w-[0.4rem] md:h-[0.5rem] md:w-[0.5rem] lg:h-[0.6rem] lg:w-[0.6rem] animate-ping rounded-full bg-orange-400 opacity-75"></span>
           <span className="inline-flex h-[0.3rem] w-[0.3rem] sm:h-[0.4rem] sm:w-[0.4rem] md:h-[0.5rem] md:w-[0.5rem] lg:h-[0.6rem] lg:w-[0.6rem] rounded-full bg-orange-500 absolute"></span>
         </div>
       )}
 
-      {tab === 'blogs' && latestBlog === true &&( 
+      {tab === 'blogs'  &&( 
         <div className="relative flex items-center">
           <span className="inline-flex h-[0.3rem] w-[0.3rem] sm:h-[0.4rem] sm:w-[0.4rem] md:h-[0.5rem] md:w-[0.5rem] lg:h-[0.6rem] lg:w-[0.6rem] animate-ping rounded-full bg-red-400 opacity-75"></span>
           <span className="inline-flex h-[0.3rem] w-[0.3rem] sm:h-[0.4rem] sm:w-[0.4rem] md:h-[0.5rem] md:w-[0.5rem] lg:h-[0.6rem] lg:w-[0.6rem] rounded-full bg-red-500 absolute"></span>
