@@ -149,9 +149,9 @@ export default function LeftSection({ selectedProjectId, selectedBlogId }: LeftS
                 data-cal-config='{"layout":"month_view"}'
                 className='text-white dark:text-black bg-black dark:bg-white px-3 pc-1 rounded'>
                 Schedule Call 
-              </button>
+              </button>s
               <a
-                href="../assets/Battu Sudeep_1.pdf"
+                href="/Resume/resume.pdf"
                 download="Resume.pdf"
                 className="text-gray-500 dark:text-gray-300 dark:hover:text-gray-500"
               >
