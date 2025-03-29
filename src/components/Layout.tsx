@@ -7,7 +7,7 @@ import RightSection from './RightSection';
 
 export default function Layout() {
   const [isDarkMode, setIsDarkMode] = useState(true);
-  const [activeTab, setActiveTab] = useState<Tab>('experience');
+  const [activeTab, setActiveTab] = useState<Tab>('projects');
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
   const [selectedBlogId, setSelectedBlogId] = useState<string | null>(null);
 
