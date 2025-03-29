@@ -5,7 +5,7 @@ excerpt: "A beginner-friendly guide to database indexing and its impact on query
 image: "https://i.pinimg.com/736x/45/9c/f6/459cf6adaa78fe352edc2bf3a0292589.jpg"
 tags: ["React" ,"TypeScript" ,"Node.js" ,"MongoDB"]
 categories: ["Project Management" ,"Team Leadership" ,"Full Stack Development"]
-date: "2024-05-05"
+date: "2025-03-23"
 ---
 
 # Understanding Database Indexing
