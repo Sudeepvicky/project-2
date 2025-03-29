@@ -11,4 +11,5 @@ export default {
     },
   },
   plugins: [require('@tailwindcss/typography')],
+  safelist: ["animate-ping"]  
 };
